@@ -1,17 +1,27 @@
-import { useState, useEffect, useRef, ReactNode } from 'react';
-import { Play, Download, Instagram, Youtube, ArrowRight, ExternalLink, Music, Headphones, Zap } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import type { ReactNode } from 'react';
+import { Play, Download, ArrowRight, ExternalLink, Music, Headphones, Zap } from 'lucide-react';
 
-// Hook for scroll reveal animations (simulating framer-motion)
-const useScrollReveal = (threshold = 0.1): [React.RefObject<HTMLDivElement>, boolean] => {
+// Built-in SVG Icons to avoid package export issues
+const InstagramIcon = ({ size = 24 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+);
+
+const YoutubeIcon = ({ size = 24 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 7.1C2.5 6 3.5 5 4.7 5h14.6c1.2 0 2.2 1 2.2 2.1v9.8c0 1.1-1 2.1-2.2 2.1H4.7c-1.2 0-2.2-1-2.2-2.1V7.1z"/><path d="M10 15l5-3-5-3v6z"/></svg>
+);
+
+// Hook for scroll reveal animations
+const useScrollReveal = (threshold = 0.1) => {
   const [isIntersecting, setIntersecting] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIntersecting(true);
-          observer.unobserve(entry.target); // Only animate once
+          if (ref.current) observer.unobserve(ref.current);
         }
       },
       { threshold, rootMargin: '0px 0px -50px 0px' }
@@ -20,7 +30,7 @@ const useScrollReveal = (threshold = 0.1): [React.RefObject<HTMLDivElement>, boo
     return () => observer.disconnect();
   }, [threshold]);
 
-  return [ref, isIntersecting];
+  return [ref, isIntersecting] as const;
 };
 
 interface RevealProps {
@@ -63,14 +73,13 @@ const SAMPLE_PACKS = [
     title: 'BOUNCE TOOL KIT',
     description: 'Cod3break signature sound selection pack. It contains: 16 samples (5 synth loops, 4 percs, 4 bouncy kicks, 3 off beat basses) All samples are royalty-free.',
     image: 'https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '#' // https://payhip.com/b/YSeqO
+    link: '#' // Replace with your actual Payhip link later
   }
 ];
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Animated Blobs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-600/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
       <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-pink-600/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
@@ -109,7 +118,6 @@ const Hero = () => {
         </Reveal>
       </div>
       
-      {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-500">
         <ArrowRight className="rotate-90" />
       </div>
@@ -132,7 +140,6 @@ const MusicSection = () => {
           {LATEST_TRACKS.map((track, index) => (
             <Reveal key={track.id} delay={index * 150} direction="up">
               <div className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-300 p-4 flex items-center gap-6 hover:bg-white/10 cursor-pointer">
-                {/* Track Cover Mockup */}
                 <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-gradient-to-br ${track.color} flex-shrink-0 flex items-center justify-center relative overflow-hidden group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-shadow`}>
                   <Music className="text-white/50 opacity-50 absolute" size={32} />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
@@ -226,8 +233,8 @@ const SamplePacksSection = () => {
 
 const Footer = () => {
   const socials = [
-    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/cod3break/' },
-    { name: 'YouTube', icon: Youtube, url: 'https://www.youtube.com/@HardBounceProduction' },
+    { name: 'Instagram', icon: InstagramIcon, url: 'https://www.instagram.com/cod3break/' },
+    { name: 'YouTube', icon: YoutubeIcon, url: 'https://www.youtube.com/@HardBounceProduction' },
   ];
 
   return (
@@ -267,7 +274,6 @@ const Footer = () => {
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-slate-50 font-sans selection:bg-purple-500/30 selection:text-purple-200 overflow-x-hidden">
-      {/* Global Custom CSS for animations that are hard to do with just inline Tailwind config */}
       <style>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
@@ -286,14 +292,12 @@ export default function App() {
         }
         html { scroll-behavior: smooth; }
         
-        /* Custom scrollbar for webkit */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
       `}</style>
 
-      {/* Navigation (Minimal) */}
       <nav className="fixed top-0 left-0 right-0 z-50 p-6 mix-blend-difference">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <span className="text-xl font-black tracking-widest text-white">C3B</span>
