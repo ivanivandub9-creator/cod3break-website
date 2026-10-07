@@ -219,8 +219,8 @@ const SamplePacksSection = () => {
 
 const Footer = () => {
   const socials = [
-    { name: 'Instagram', icon: Instagram, url:https://www.instagram.com/cod3break/ '#' },
-    { name: 'YouTube', icon: Youtube, url:https://www.youtube.com/@HardBounceProduction '#' },
+    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/cod3break/' },
+    { name: 'YouTube', icon: Youtube, url: 'https://www.youtube.com/@HardBounceProduction' },
   ];
 
   return (
