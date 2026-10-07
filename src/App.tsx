@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Play, Download, Instagram, Twitter, Youtube, ArrowRight, ExternalLink, Music, Headphones, Zap } from 'lucide-react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
+import { Play, Download, Instagram, Youtube, ArrowRight, ExternalLink, Music, Headphones, Zap } from 'lucide-react';
 
 // Hook for scroll reveal animations (simulating framer-motion)
-const useScrollReveal = (threshold = 0.1) => {
+const useScrollReveal = (threshold = 0.1): [React.RefObject<HTMLDivElement>, boolean] => {
   const [isIntersecting, setIntersecting] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,8 +23,15 @@ const useScrollReveal = (threshold = 0.1) => {
   return [ref, isIntersecting];
 };
 
+interface RevealProps {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+  direction?: 'up' | 'left' | 'right' | 'none';
+}
+
 // Reusable animated wrapper component
-const Reveal = ({ children, delay = 0, className = '', direction = 'up' }) => {
+const Reveal = ({ children, delay = 0, className = '', direction = 'up' }: RevealProps) => {
   const [ref, isVisible] = useScrollReveal();
   
   const baseClasses = `transition-all duration-1000 ease-out ${className}`;
