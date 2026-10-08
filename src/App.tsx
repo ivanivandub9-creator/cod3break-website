@@ -79,21 +79,47 @@ const SAMPLE_PACKS = [
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-600/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
-      <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-pink-600/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+    <section 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      style={{ backgroundColor: '#05010a' }}
+    >
+      {/* React Bits CRTWarp Background */}
+      <div className="absolute inset-0 z-0">
+        <CRTWarp
+          color="#f7e455"
+          backgroundColor="#05010a"
+          speed={0.5}
+          curvature={0.25}
+          scanlineStrength={0.25}
+          scanlineFrequency={200}
+          waveAmplitude={0.3}
+          waveFrequency={2.5}
+          bloom={1.5}
+          bloomRadius={1}
+          noise={0.1}
+          vignette={0}
+          brightness={1.25}
+          pixelation={1}
+          rgbShift={0.015}
+          mouseReact
+          mouseStrength={0.5}
+          dpr={1}
+          fps={30}
+          paused={false}
+        />
+      </div>
 
-      <div className="relative z-10 text-center px-6 w-full max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-6 w-full max-w-5xl mx-auto pointer-events-none">
         <Reveal>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm text-sm text-gray-300 mb-8 tracking-widest uppercase">
-            <Zap size={16} className="text-purple-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm text-sm text-gray-300 mb-8 tracking-widest uppercase pointer-events-auto">
+            <Zap size={16} className="text-[#f7e455]" />
             <span>Music Producer & Sound Designer</span>
           </div>
         </Reveal>
         
         <Reveal delay={200}>
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500 mb-6 drop-shadow-2xl">
+          {/* UPDATED TO PURE WHITE */}
+          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white mb-6 drop-shadow-2xl">
             COD3BREAK
           </h1>
         </Reveal>
@@ -105,8 +131,8 @@ const Hero = () => {
         </Reveal>
 
         <Reveal delay={600}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#music" className="w-full sm:w-auto px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 group">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pointer-events-auto">
+            <a href="#music" className="w-full sm:w-auto px-8 py-4 bg-[#f7e455] text-black rounded-full font-bold hover:bg-white transition-colors flex items-center justify-center gap-2 group">
               <Play size={20} className="fill-black group-hover:scale-110 transition-transform" />
               Listen Now
             </a>
@@ -118,7 +144,7 @@ const Hero = () => {
         </Reveal>
       </div>
       
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-500">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-500 z-10">
         <ArrowRight className="rotate-90" />
       </div>
     </section>
