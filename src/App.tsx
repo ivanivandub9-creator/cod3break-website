@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
-import { Play, Download, ArrowRight, ExternalLink, Music, Headphones, Zap } from 'lucide-react';
+import { Play, Download, ArrowRight, ExternalLink, Headphones, Zap } from 'lucide-react';
 import MoltenMetal from './MoltenMetal';
 
 // Built-in SVG Icons
@@ -63,9 +63,9 @@ const Reveal = ({ children, delay = 0, className = '', direction = 'up' }: Revea
 };
 
 const LATEST_TRACKS = [
-  { id: 1, title: 'WITH THE MOB', genre: 'Hard Bounce', plays: '1K', color: 'from-purple-500 to-indigo-600', link: 'https://open.spotify.com/track/6U117vgKG6ab7dWTRCahU6?si=2b3d9ba0c54444b8' },
-  { id: 2, title: 'PONYKAI', genre: 'Hard Bounce', plays: '50K', color: 'from-pink-500 to-rose-600', link: 'https://open.spotify.com/track/2aVH4erbbi2KQnfhZKh5q2?si=8b4bbb64ec1e436c' },
-  { id: 3, title: 'I NEED THAT', genre: 'Techno', plays: '150K', color: 'from-blue-600 to-cyan-500', link: 'https://open.spotify.com/track/4yMKx6UJWUsf7N02XT05wF?si=98bf5f271de5435b' },
+  { id: 1, title: 'WITH THE MOB', genre: 'Hard Bounce', plays: '1K', color: 'from-purple-500 to-indigo-600', image: 'https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02df51c39a5f5de084411d6a4a', link: 'https://open.spotify.com/track/6U117vgKG6ab7dWTRCahU6?si=2b3d9ba0c54444b8' },
+  { id: 2, title: 'PONYKAI', genre: 'Hard Bounce', plays: '50K', color: 'from-pink-500 to-rose-600', image: 'https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e027d0659b47d4c8e29f94c5256', link: 'https://open.spotify.com/track/2aVH4erbbi2KQnfhZKh5q2?si=8b4bbb64ec1e436c' },
+  { id: 3, title: 'I NEED THAT', genre: 'Techno', plays: '150K', color: 'from-blue-600 to-cyan-500', image: 'https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e023cf179c4a5d64e517c61e026', link: 'https://open.spotify.com/track/4yMKx6UJWUsf7N02XT05wF?si=98bf5f271de5435b' },
 ];
 
 const SAMPLE_PACKS = [
@@ -170,7 +170,7 @@ const MusicSection = () => {
                 className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-300 p-4 flex items-center gap-6 hover:bg-white/10 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400"
               >
                 <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-gradient-to-br ${track.color} flex-shrink-0 flex items-center justify-center relative overflow-hidden group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-shadow`}>
-                  <Music className="text-white/50 opacity-50 absolute" size={32} />
+                  <img src={track.image} alt={`${track.title} cover`} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                   <Play className="text-white opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-300 relative z-10 fill-white" size={28} />
                 </div>
