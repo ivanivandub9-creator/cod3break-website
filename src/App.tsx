@@ -119,7 +119,7 @@ const Hero = () => {
         </Reveal>
         
         <Reveal delay={200}>
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white mb-6 drop-shadow-2xl">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white mb-6 drop-shadow-2xl" style={{ fontFamily: "'Orbitron', sans-serif" }}>
             COD3BREAK
           </h1>
         </Reveal>
@@ -221,9 +221,6 @@ const SamplePacksSection = () => {
                 <li className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div> Royalty-free for commercial use
                 </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div> Serum presets with macros mapped
-                </li>
               </ul>
             </div>
           </Reveal>
@@ -267,7 +264,7 @@ const Footer = () => {
     <footer className="py-12 px-6 border-t border-white/10 relative z-10 bg-black">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <Reveal>
-          <div className="text-2xl font-black tracking-tighter text-white/80">COD3BREAK</div>
+          <div className="text-2xl font-black tracking-tighter text-white/80" style={{ fontFamily: "'Orbitron', sans-serif" }}>COD3BREAK</div>
         </Reveal>
         
         <Reveal delay={200}>
@@ -300,9 +297,12 @@ const Footer = () => {
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-slate-50 font-sans selection:bg-purple-500/30 selection:text-purple-200 overflow-x-hidden">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+      `}</style>
       <nav className="fixed top-0 left-0 right-0 z-50 p-6 mix-blend-difference">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
-          <span className="text-xl font-black tracking-widest text-white">C3B</span>
+          <span className="text-xl font-black tracking-widest text-white" style={{ fontFamily: "'Orbitron', sans-serif" }}>C3B</span>
           <div className="flex gap-6 text-sm font-medium text-white/70">
             <a href="#music" className="hover:text-white transition-colors hidden sm:block">Music</a>
             <a href="#packs" className="hover:text-white transition-colors hidden sm:block">Packs</a>
