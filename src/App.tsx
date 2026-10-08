@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 import { Play, Download, ArrowRight, ExternalLink, Music, Headphones, Zap } from 'lucide-react';
-import CRTWarp from './CRTWarp';
+import MoltenMetal from './MoltenMetal';
 
 // Built-in SVG Icons
 const InstagramIcon = ({ size = 24 }) => (
@@ -63,9 +63,9 @@ const Reveal = ({ children, delay = 0, className = '', direction = 'up' }: Revea
 };
 
 const LATEST_TRACKS = [
-  { id: 1, title: 'WITH THE MOB', genre: 'Hard Bounce', plays: '1K', color: 'from-purple-500 to-indigo-600' },
-  { id: 2, title: 'PONYKAI', genre: 'Hard Bounce', plays: '50K', color: 'from-pink-500 to-rose-600' },
-  { id: 3, title: 'I NEED THAT', genre: 'Techno', plays: '150K', color: 'from-blue-600 to-cyan-500' },
+  { id: 1, title: 'WITH THE MOB', genre: 'Hard Bounce', plays: '1K', color: 'from-purple-500 to-indigo-600', link: 'https://open.spotify.com/track/6U117vgKG6ab7dWTRCahU6?si=2b3d9ba0c54444b8' },
+  { id: 2, title: 'PONYKAI', genre: 'Hard Bounce', plays: '50K', color: 'from-pink-500 to-rose-600', link: 'https://open.spotify.com/track/2aVH4erbbi2KQnfhZKh5q2?si=8b4bbb64ec1e436c' },
+  { id: 3, title: 'I NEED THAT', genre: 'Techno', plays: '150K', color: 'from-blue-600 to-cyan-500', link: 'https://open.spotify.com/track/4yMKx6UJWUsf7N02XT05wF?si=98bf5f271de5435b' },
 ];
 
 const SAMPLE_PACKS = [
@@ -74,7 +74,7 @@ const SAMPLE_PACKS = [
     title: 'BOUNCE TOOL KIT',
     description: 'Cod3break signature sound selection pack. It contains: 16 samples (5 synth loops, 4 percs, 4 bouncy kicks, 3 off beat basses) All samples are royalty-free.',
     image: 'https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '#' 
+    link: 'https://payhip.com/b/YSeqO'
   }
 ];
 
@@ -84,29 +84,26 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       style={{ backgroundColor: '#05010a' }}
     >
-      {/* React Bits CRTWarp Background */}
       <div className="absolute inset-0 z-0">
-        <CRTWarp
-          color="#f7e455"
-          backgroundColor="#05010a"
-          speed={0.5}
-          curvature={0.25}
-          scanlineStrength={0.25}
-          scanlineFrequency={200}
-          waveAmplitude={0.3}
-          waveFrequency={2.5}
-          bloom={1.5}
-          bloomRadius={1}
-          noise={0.1}
-          vignette={0}
-          brightness={1.25}
-          pixelation={1}
-          rgbShift={0.015}
-          mouseReact
-          mouseStrength={0.5}
-          dpr={1}
-          fps={30}
-          paused={false}
+        <MoltenMetal
+          color1="#5227FF"
+          color2="#FF9FFC"
+          color3="#FFFFFF"
+          speed={0.35}
+          scale={4}
+          detail={3}
+          glow={1.6}
+          coreSize={0.1}
+          swirl={1}
+          fold={-0.2}
+          blackPoint={0.05}
+          brightness={1.3}
+          colorMode="molten"
+          grain
+          grainIntensity={0.05}
+          mouseInteraction
+          mouseStrength={0.3}
+          opacity={1}
         />
       </div>
 
@@ -125,8 +122,8 @@ const Hero = () => {
         </Reveal>
 
         <Reveal delay={400}>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-            Crafting industry ready sounds. Sound Design for producers, by a producer. Mixing & Mastering services.
+          <p className="text-lg md:text-xl text-white max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            Sound Design for producers, by a producer. Mixing & Mastering services.
           </p>
         </Reveal>
 
@@ -165,7 +162,13 @@ const MusicSection = () => {
         <div className="grid gap-6">
           {LATEST_TRACKS.map((track, index) => (
             <Reveal key={track.id} delay={index * 150} direction="up">
-              <div className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-300 p-4 flex items-center gap-6 hover:bg-white/10 cursor-pointer">
+              <a
+                href={track.link}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Listen to ${track.title} on Spotify`}
+                className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-300 p-4 flex items-center gap-6 hover:bg-white/10 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400"
+              >
                 <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-gradient-to-br ${track.color} flex-shrink-0 flex items-center justify-center relative overflow-hidden group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-shadow`}>
                   <Music className="text-white/50 opacity-50 absolute" size={32} />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
@@ -181,11 +184,11 @@ const MusicSection = () => {
                 </div>
                 
                 <div className="hidden sm:flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity translate-x-4 group-hover:translate-x-0 duration-300 pr-4">
-                  <button className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-colors">
+                  <span className="p-3 rounded-full bg-white/10 group-hover:bg-white text-white group-hover:text-black transition-colors">
                     <ExternalLink size={20} />
-                  </button>
+                  </span>
                 </div>
-              </div>
+              </a>
             </Reveal>
           ))}
         </div>
