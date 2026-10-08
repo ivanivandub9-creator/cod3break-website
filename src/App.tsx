@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 import { Play, Download, ArrowRight, ExternalLink, Music, Headphones, Zap } from 'lucide-react';
+import CRTWarp from './CRTWarp';
 
-// Built-in SVG Icons to avoid package export issues
+// Built-in SVG Icons
 const InstagramIcon = ({ size = 24 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
 );
@@ -73,7 +74,7 @@ const SAMPLE_PACKS = [
     title: 'BOUNCE TOOL KIT',
     description: 'Cod3break signature sound selection pack. It contains: 16 samples (5 synth loops, 4 percs, 4 bouncy kicks, 3 off beat basses) All samples are royalty-free.',
     image: 'https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '#' // Replace with your actual Payhip link later
+    link: '#' 
   }
 ];
 
@@ -118,7 +119,6 @@ const Hero = () => {
         </Reveal>
         
         <Reveal delay={200}>
-          {/* UPDATED TO PURE WHITE */}
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white mb-6 drop-shadow-2xl">
             COD3BREAK
           </h1>
@@ -300,30 +300,6 @@ const Footer = () => {
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-slate-50 font-sans selection:bg-purple-500/30 selection:text-purple-200 overflow-x-hidden">
-      <style>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-        html { scroll-behavior: smooth; }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
-      `}</style>
-
       <nav className="fixed top-0 left-0 right-0 z-50 p-6 mix-blend-difference">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <span className="text-xl font-black tracking-widest text-white">C3B</span>
