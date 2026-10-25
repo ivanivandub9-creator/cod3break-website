@@ -113,7 +113,7 @@ const Hero = () => {
             color1="#050608"
             color2="#737B84"
             color3="#E5E8EC"
-            speed={0.35}
+            speed={0.2}
             scale={4}
             detail={3}
             glow={1.6}
@@ -171,7 +171,7 @@ const MusicSection = () => {
             color1="#050608"
             color2="#737B84"
             color3="#E5E8EC"
-            speed={0.35}
+            speed={0.2}
             scale={4}
             detail={3}
             glow={1.6}
